@@ -15,7 +15,7 @@
     /* transform: rotate(90deg); */
 }
 
-header , .input , .btn, .output-main{
+header , .input , .btn, .output-main , .last{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,7 +39,7 @@ input{
     box-shadow: 5px 5px black;
 }
 
-.output{
+.output , .last-entered{
     width: fit-content;
     background-color: white;
     margin: 1rem;
