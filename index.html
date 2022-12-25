@@ -11,35 +11,55 @@
         let number = Number.parseInt(Math.floor((Math.random() * 100) + 1));
         console.log(number);
         let tries = 0;
+        let lastEntered = [];
 
         const check = () => {
             let guessEntered = Number.parseInt(document.getElementById('guess').value);
-            console.log(guessEntered);
+            // console.log(guessEntered)
+            
 
             if (Number.isInteger(guessEntered)) {
                 if (guessEntered != "") {
                     if (guessEntered == number) {
                         let score = 100 - tries;
                         document.getElementById('output').innerHTML = "Congratulations!!! <br>The real number you <b><i>GUESSED</i></b> is " + number + ".<br>Your Score is " + score + ".";
+                       
                         number = Number.parseInt(Math.floor((Math.random() * 100) + 1));
                         tries = 0;
-                        document.getElementById('guess').value = "";
-                        document.getElementById('guess').setAttribute('placeholder', 'Enter your guess... (1 - 100)');
-                        document.getElementById('guess').focus();
-                        console.log(number);
+                       
+                        let guess = document.getElementById('guess');
+                        guess.value = "";
+                        guess.setAttribute('placeholder', 'Enter your guess... (1 - 100)');
+                        guess.focus();
+                       
+                        for (let j = 0; j <= lastEntered.length; j++) {
+                            lastEntered.pop()
+                        }
+                        document.getElementById('last-entered').innerHTML = "Last number(s) you entered : ";
+                        
                     } else if (guessEntered > number) {
                         let guess = document.getElementById('guess');
                         guess.value = ""
                         guess.setAttribute('placeholder', 'Enter again (1 - 100)');
                         document.getElementById('output').innerHTML = "Wrong guess!!! <br>Try again. <br><b>Hint : </b>The real number is <b><i>SMALLER</i></b> than the number you entered.";
-                        document.getElementById('guess').focus();
+                        guess.focus();
+                        
+                        lastEntered[tries] = guessEntered;
+                        let p = document.createElement('p');
+                        p.innerHTML = lastEntered[tries];
+                        document.getElementById('last-entered').appendChild(p);
                         tries++;
                     } else if (guessEntered < number) {
                         let guess = document.getElementById('guess');
                         guess.value = ""
                         guess.setAttribute('placeholder', 'Enter again (1 - 100)');
-                        guess.focus();
                         document.getElementById('output').innerHTML = "Wrong guess!!! <br>Try again. <br><b>Hint : </b>The real number is <b><i>GREATER</i></b> than the number you entered.";
+                        guess.focus();
+                        
+                        lastEntered[tries] = guessEntered;
+                        let p = document.createElement('p');
+                        p.innerHTML = lastEntered[tries];
+                        document.getElementById('last-entered').appendChild(p);
                         tries++;
                     }
                 } else {
@@ -67,9 +87,16 @@
     </div>
     
     <div class="output-main">
-        <div class="output" id="output">Enter a number to guess. <br></div>
+        <div class="output" id="output">Enter a number to guess. <br></div><br>
     </div>
+    <div class="last">
+        <div class="last-entered" id="last-entered">
+            Last number(s) you entered : <br> 
+        </div>
+    </div>
+    
    </div>
+   
 </body>
 
 </html>
