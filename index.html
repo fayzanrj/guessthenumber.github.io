@@ -24,13 +24,14 @@
                         number = Number.parseInt(Math.floor((Math.random() * 100) + 1));
                         tries = 0;
                         document.getElementById('guess').value = "";
+                        document.getElementById('guess').setAttribute('placeholder', 'Enter your guess... (1 - 100)');
                         document.getElementById('guess').focus();
                         console.log(number);
                     } else if (guessEntered > number) {
                         let guess = document.getElementById('guess');
                         guess.value = ""
                         guess.setAttribute('placeholder', 'Enter again (1 - 100)');
-                        document.getElementById('output').innerHTML = "Wrong guess!!!<br> The real number is <b><i>SMALLER</i></b> than you entered.<br>Try again.";
+                        document.getElementById('output').innerHTML = "Wrong guess!!! <br>Try again. <br><b>Hint : </b>The real number is <b><i>SMALLER</i></b> than the number you entered.";
                         document.getElementById('guess').focus();
                         tries++;
                     } else if (guessEntered < number) {
@@ -38,7 +39,7 @@
                         guess.value = ""
                         guess.setAttribute('placeholder', 'Enter again (1 - 100)');
                         guess.focus();
-                        document.getElementById('output').innerHTML = "Wrong guess!!! <br>The real number is <b><i>GREATER</i></b> than you entered.<br>Try again.";
+                        document.getElementById('output').innerHTML = "Wrong guess!!! <br>Try again. <br><b>Hint : </b>The real number is <b><i>GREATER</i></b> than the number you entered.";
                         tries++;
                     }
                 } else {
@@ -66,7 +67,7 @@
     </div>
     
     <div class="output-main">
-        <div class="output" id="output">Enter a number to guess</div>
+        <div class="output" id="output">Enter a number to guess. <br></div>
     </div>
    </div>
 </body>
