@@ -22,14 +22,14 @@
                 if (guessEntered != "") {
                     if (guessEntered == number) {
                         let score = 100 - tries;
-                        document.getElementById('output').innerHTML = "Congratulations!!! <br>The real number you <b><i>GUESSED</i></b> is " + number + ".<br>Your Score is " + score + ".";
+                        document.getElementById('output').innerHTML = "Congratulations!!! <br>The number you <b><i>GUESSED</i></b> is " + number + ".<br>Your Score is " + score + ".";
                        
                         number = Number.parseInt(Math.floor((Math.random() * 100) + 1));
                         tries = 0;
                        
                         let guess = document.getElementById('guess');
                         guess.value = "";
-                        guess.setAttribute('placeholder', 'Enter your guess... (1 - 100)');
+                        guess.setAttribute('placeholder', 'New started. Enter your guess(1 - 100)');
                         guess.focus();
                        
                         for (let j = 0; j <= lastEntered.length; j++) {
@@ -41,24 +41,27 @@
                         let guess = document.getElementById('guess');
                         guess.value = ""
                         guess.setAttribute('placeholder', 'Enter again (1 - 100)');
-                        document.getElementById('output').innerHTML = "Wrong guess!!! <br>Try again. <br><b>Hint : </b>The real number is <b><i>SMALLER</i></b> than the number you entered.";
+                        document.getElementById('output').innerHTML = "Wrong guess!!! <br>Try again. <br><b>Hint : </b>The number you entered is <b><i>GREATER</i></b> than the actual number.";
                         guess.focus();
                         
                         lastEntered[tries] = guessEntered;
+                        console.log(tries ,lastEntered[tries]);
                         let p = document.createElement('p');
-                        p.innerHTML = lastEntered[tries];
+                        p.innerHTML = lastEntered[tries] + " (is greater)";
                         document.getElementById('last-entered').appendChild(p);
                         tries++;
                     } else if (guessEntered < number) {
                         let guess = document.getElementById('guess');
                         guess.value = ""
                         guess.setAttribute('placeholder', 'Enter again (1 - 100)');
-                        document.getElementById('output').innerHTML = "Wrong guess!!! <br>Try again. <br><b>Hint : </b>The real number is <b><i>GREATER</i></b> than the number you entered.";
+                        document.getElementById('output').innerHTML = "Wrong guess!!! <br>Try again. <br><b>Hint : </b>The number you entered is <b><i>SMALLER</i></b> than the actual number.";
                         guess.focus();
                         
                         lastEntered[tries] = guessEntered;
+                        lastEntered[tries] = guessEntered;
+                        console.log(tries ,lastEntered[tries]);
                         let p = document.createElement('p');
-                        p.innerHTML = lastEntered[tries];
+                        p.innerHTML = lastEntered[tries] + " (is smaller)";
                         document.getElementById('last-entered').appendChild(p);
                         tries++;
                     }
