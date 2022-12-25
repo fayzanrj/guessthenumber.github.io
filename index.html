@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the number</title>
+    <link rel="stylesheet" href="style.css"> 
+    <script>
+        let number = Number.parseInt(Math.floor((Math.random() * 100) + 1));
+        console.log(number);
+        let tries = 0;
+
+        const check = () => {
+            let guessEntered = Number.parseInt(document.getElementById('guess').value);
+            console.log(guessEntered);
+
+            if (Number.isInteger(guessEntered)) {
+                if (guessEntered != "") {
+                    if (guessEntered == number) {
+                        let score = 100 - tries;
+                        document.getElementById('output').innerHTML = "Congratulations!!! <br>The real number you <b><i>GUESSED</i></b> is " + number + ".<br>Your Score is " + score + ".";
+                        number = Number.parseInt(Math.floor((Math.random() * 100) + 1));
+                        tries = 0;
+                        document.getElementById('guess').value = "";
+                        document.getElementById('guess').focus();
+                        console.log(number);
+                    } else if (guessEntered > number) {
+                        let guess = document.getElementById('guess');
+                        guess.value = ""
+                        guess.setAttribute('placeholder', 'Enter again (1 - 100)');
+                        document.getElementById('output').innerHTML = "Wrong guess!!!<br> The real number is <b><i>SMALLER</i></b> than you entered.<br>Try again.";
+                        document.getElementById('guess').focus();
+                        tries++;
+                    } else if (guessEntered < number) {
+                        let guess = document.getElementById('guess');
+                        guess.value = ""
+                        guess.setAttribute('placeholder', 'Enter again (1 - 100)');
+                        guess.focus();
+                        document.getElementById('output').innerHTML = "Wrong guess!!! <br>The real number is <b><i>GREATER</i></b> than you entered.<br>Try again.";
+                        tries++;
+                    }
+                } else {
+                    document.getElementById('output').innerHTML = "Input field is empty. Enter something.."
+                }
+            } else {
+                let guess = document.getElementById('guess');
+                guess.value = "";
+                guess.focus();
+                document.getElementById('output').innerHTML = "Entered value must be a NUMBER"
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+   <div class="main">
+    <header>Guess the Number</header>
+    <div class="input">
+        <input type="text" name="guess" id="guess" placeholder="Enter your guess... (1 - 100)">
+    </div>
+    <div class="btn">
+        <button onclick="check()">GUESS</button>
+    </div>
+    
+    <div class="output-main">
+        <div class="output" id="output">Enter a number to guess</div>
+    </div>
+   </div>
+</body>
+
+</html>
