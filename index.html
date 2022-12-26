@@ -30,7 +30,7 @@
                         let guess = document.getElementById('guess');
                         guess.value = "";
                         guess.setAttribute('placeholder', 'New started. Enter your guess(1 - 100)');
-                        guess.focus();
+//                         guess.focus();
                        
                         for (let j = 0; j <= lastEntered.length; j++) {
                             lastEntered.pop()
@@ -42,7 +42,7 @@
                         guess.value = ""
                         guess.setAttribute('placeholder', 'Enter again (1 - 100)');
                         document.getElementById('output').innerHTML = "Wrong guess!!! <br>Try again. <br><b>Hint : </b>The number you entered is <b><i>GREATER</i></b> than the actual number.";
-                        guess.focus();
+//                         guess.focus();
                         
                         lastEntered[tries] = guessEntered;
                         let p = document.createElement('p');
@@ -54,7 +54,7 @@
                         guess.value = ""
                         guess.setAttribute('placeholder', 'Enter again (1 - 100)');
                         document.getElementById('output').innerHTML = "Wrong guess!!! <br>Try again. <br><b>Hint : </b>The number you entered is <b><i>SMALLER</i></b> than the actual number.";
-                        guess.focus();
+//                         guess.focus();
                         
                         lastEntered[tries] = guessEntered;
                         lastEntered[tries] = guessEntered;
